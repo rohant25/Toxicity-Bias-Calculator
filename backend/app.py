@@ -32,7 +32,7 @@ class EvaluationItem(BaseModel):
     actual_response: str
 
 class LLMEvaluator:
-    def __init__(self, sbert_model_name: str = 'all-MiniLM-L6-v2', detoxify_model_name: str = 'small'):
+    def __init__(self, sbert_model_name: str = 'all-MiniLM-L6-v2', detoxify_model_name: str = 'original-small'):
         self.sbert_model = SentenceTransformer(sbert_model_name)
         self.detoxify_model = Detoxify(detoxify_model_name)
         self.rouge_scorer = rouge_scorer.RougeScorer(['rouge1', 'rougeL'], use_stemmer=True)
