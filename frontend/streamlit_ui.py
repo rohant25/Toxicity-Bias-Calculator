@@ -6,7 +6,7 @@ import requests
 API_URL = "https://llm-backend-583275352336.us-central1.run.app/evaluate" # running on cloud
 
 st.title("LLM Response Evaluator")
-
+st.subheader("Evaluate LLM Responses for Toxicity, Bias, and Similarity")
 st.write("### Enter Evaluation Inputs")
 
 # Input fields

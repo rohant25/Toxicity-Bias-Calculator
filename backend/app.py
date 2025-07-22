@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
 import pandas as pd
@@ -17,7 +18,13 @@ except LookupError:
     nltk.download('punkt')
 
 app = FastAPI(title="LLM Evaluation API")
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # or better: ["https://llm-frontend-...a.run.app"]
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 class EvaluationItem(BaseModel):
     user_query: str
     expected_response: str
@@ -91,6 +98,7 @@ def evaluate_responses(items: List[EvaluationItem]):
 
     try:
         evaluated_df = evaluator.run_all(df)
+        evaluated_df = evaluated_df.round(2)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
