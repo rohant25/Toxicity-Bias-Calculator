@@ -2,8 +2,8 @@ fastapi
 uvicorn
 pandas
 nltk
-detoxify
+torch
 sentence-transformers
+detoxify
 rouge-score
 bert-score
-torch
