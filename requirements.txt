@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pandas
+nltk
+detoxify
+sentence-transformers
+rouge-score
+bert-score
+torch
