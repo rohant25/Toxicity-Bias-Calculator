@@ -5,6 +5,7 @@ from typing import List
 import pandas as pd
 import nltk
 import logging
+import traceback
 from detoxify import Detoxify
 from sentence_transformers import SentenceTransformer, util
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
@@ -98,10 +99,15 @@ def evaluate_responses(items: List[EvaluationItem]):
     } for item in items])
 
     try:
+        logging.info(f"Received payload: {df.to_dict(orient='records')}")
         evaluated_df = evaluator.run_all(df)
         evaluated_df = evaluated_df.round(2)
+        logging.info("Evaluation successful.")
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logging.error("Evaluation failed.")
+        logging.error(f"Exception: {e}")
+        logging.error(traceback.format_exc())
+        raise HTTPException(status_code=500, detail="Internal server error. Check logs.")
 
     # Return only evaluation columns + input
     return evaluated_df.to_dict(orient="records")
