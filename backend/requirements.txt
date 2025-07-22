@@ -2,7 +2,7 @@ fastapi
 uvicorn
 pandas
 nltk
-torch
+torch==2.2.2
 sentence-transformers
 detoxify
 rouge-score
