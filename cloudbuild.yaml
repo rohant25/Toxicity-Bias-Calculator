@@ -12,6 +12,9 @@ steps:
     args:
       ['run', 'deploy', 'llm-backend',
        '--image', 'gcr.io/$PROJECT_ID/llm-backend',
+       '--memory', '2Gi',
+       '--cpu', '2',
+       '--timeout', '900',
        '--region', 'us-central1',
        '--platform', 'managed',
        '--allow-unauthenticated']
@@ -29,9 +32,6 @@ steps:
     args:
       ['run', 'deploy', 'llm-frontend',
        '--image', 'gcr.io/$PROJECT_ID/llm-frontend',
-       '--memory', '2Gi',
-       '--cpu', '2',
-       '--timeout', '900',
        '--region', 'us-central1',
        '--platform', 'managed',
        '--allow-unauthenticated']
