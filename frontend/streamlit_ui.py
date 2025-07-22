@@ -2,7 +2,8 @@ import streamlit as st
 import pandas as pd
 import requests
 
-API_URL = "http://localhost:8000/evaluate"
+# API_URL = "http://localhost:8000/evaluate" # running on local
+API_URL = "https://llm-backend-583275352336.us-central1.run.app" # running on cloud
 
 st.title("LLM Response Evaluator")
 
