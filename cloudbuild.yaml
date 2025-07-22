@@ -1,0 +1,37 @@
+steps:
+  ### 🔧 Build and push BACKEND
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/llm-backend', './backend']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/llm-backend']
+
+  ### 🚀 Deploy BACKEND
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      ['run', 'deploy', 'llm-backend',
+       '--image', 'gcr.io/$PROJECT_ID/llm-backend',
+       '--region', 'us-central1',
+       '--platform', 'managed',
+       '--allow-unauthenticated']
+
+  ### 🔧 Build and push FRONTEND
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/llm-frontend', './frontend']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/llm-frontend']
+
+  ### 🚀 Deploy FRONTEND
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      ['run', 'deploy', 'llm-frontend',
+       '--image', 'gcr.io/$PROJECT_ID/llm-frontend',
+       '--region', 'us-central1',
+       '--platform', 'managed',
+       '--allow-unauthenticated']
+
+# Optional: Add timeout if your builds take long
+timeout: 1200s
