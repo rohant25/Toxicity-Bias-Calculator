@@ -12,7 +12,7 @@ steps:
     args:
       ['run', 'deploy', 'llm-backend',
        '--image', 'gcr.io/$PROJECT_ID/llm-backend',
-       '--memory', '2Gi',
+       '--memory', '4Gi',
        '--cpu', '2',
        '--timeout', '900',
        '--region', 'us-central1',
