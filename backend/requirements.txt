@@ -2,8 +2,8 @@ fastapi
 uvicorn
 pandas
 nltk
-numpy>=1.21.0
-torch==2.2.2
+numpy
+torch
 sentence-transformers
 detoxify
 rouge-score
