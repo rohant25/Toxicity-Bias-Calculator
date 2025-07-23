@@ -6,7 +6,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Download NLTK data
-RUN python -c "import nltk;nltk.download('stopwords'); nltk.download('punkt');"
+RUN python -c "import nltk;nltk.download('stopwords'); nltk.download('punkt_tab');"
 RUN mv -f ~/nltk_data /usr/local/nltk_data
 
 COPY . .

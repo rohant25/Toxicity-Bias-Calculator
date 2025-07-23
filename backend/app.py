@@ -3,8 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
 import pandas as pd
-import nltk
-nltk.data.path.append('/usr/local/nltk_data')
+# import nltk
+# nltk.data.path.append('/usr/local/nltk_data')
 import logging
 import traceback
 from detoxify import Detoxify
