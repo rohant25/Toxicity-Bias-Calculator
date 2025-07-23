@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
 import pandas as pd
-import nltk
+# import nltk
 import logging
 import traceback
 from detoxify import Detoxify
@@ -14,10 +14,7 @@ from rouge_score import rouge_scorer
 from bert_score import score
 
 # Ensure NLTK data is downloaded
-try:
-    nltk.data.find('tokenizers/punkt')
-except LookupError:
-    nltk.download('punkt')
+# nltk.download('punkt')
 
 app = FastAPI(title="LLM Evaluation API")
 app.add_middleware(
